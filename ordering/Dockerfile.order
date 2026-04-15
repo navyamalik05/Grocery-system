@@ -1,0 +1,15 @@
+FROM python:latest
+
+WORKDIR /app
+
+COPY ordering/requirements.txt ./requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+COPY ordering/app.py    ./app.py
+COPY ordering/ordering.sql    ./ordering.sql
+COPY key.txt     ./key.txt
+
+ENV FLASK_APP=app.py
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]

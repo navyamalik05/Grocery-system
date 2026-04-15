@@ -1,0 +1,55 @@
+services:
+  user:
+    build:
+      context: .
+      dockerfile: user_management/Dockerfile.users
+    container_name: user
+    image: user
+    ports:
+      - "9000:5000"
+    networks:
+      - mariani4
+  products:
+    build:
+      context: .
+      dockerfile: product_management/Dockerfile.products
+    container_name: products
+    image: products
+    ports:
+      - "9001:5000"
+    networks:
+      - mariani4
+  search:
+    build:
+      context: .
+      dockerfile: product_searching/Dockerfile.search
+    container_name: search
+    image: search
+    ports:
+      - "9002:5000"
+    networks:
+      - mariani4
+  orders:
+    build:
+      context: .
+      dockerfile: ordering/Dockerfile.order
+    container_name: orders
+    image: orders
+    ports:
+      - "9003:5000"
+    networks:
+      - mariani4
+  logs:
+    build:
+      context: .
+      dockerfile: logging/Dockerfile.logs
+    container_name: logs
+    image: logs
+    ports:
+      - "9004:5000"
+    networks:
+      - mariani4
+
+networks:
+  mariani4:
+    driver: bridge
